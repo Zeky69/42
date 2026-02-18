@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "loading"
+version = "0.1.0"
+description = "ex01"
+authors = ["zakburak"]
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.1.0"
+numpy = "^1.25.0"
+matplotlib = "^3.7.0"
+requests = "^2.31.0"
+
+[tool.poetry.scripts]
+loading = "loading:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
