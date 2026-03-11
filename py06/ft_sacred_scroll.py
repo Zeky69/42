@@ -16,14 +16,14 @@ print(f"alchemy.create_water(): {alchemy.create_water()}")
 try:
     result = alchemy.create_earth()
     print(f"alchemy.create_earth(): {result}")
-except AttributeError as e:
-    print(f"alchemy.create_earth(): AttributeError - not exposed")
+except AttributeError:
+    print("alchemy.create_earth(): AttributeError - not exposed")
 
 try:
     result = alchemy.create_air()
     print(f"alchemy.create_air(): {result}")
-except AttributeError as e:
-    print(f"alchemy.create_air(): AttributeError - not exposed")
+except AttributeError:
+    print("alchemy.create_air(): AttributeError - not exposed")
 
 print("\nPackage metadata:")
 print(f"Version: {alchemy.__version__}")

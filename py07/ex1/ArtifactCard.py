@@ -3,7 +3,6 @@ from ex0.Card import Card
 
 
 class ArtifactCard(Card):
-    """Concrete card representing a permanent game modifier."""
 
     def __init__(
         self,
@@ -18,7 +17,6 @@ class ArtifactCard(Card):
         self.effect = effect
 
     def play(self, game_state: dict) -> dict:
-        """Place the artifact into play as a permanent modifier."""
         return {
             'card_played': self.name,
             'mana_used': self.cost,
@@ -26,7 +24,6 @@ class ArtifactCard(Card):
         }
 
     def activate_ability(self) -> Dict:
-        """Activate the artifact's ongoing ability, consuming durability."""
         if self.durability <= 0:
             return {
                 'artifact': self.name,

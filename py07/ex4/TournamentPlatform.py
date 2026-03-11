@@ -4,7 +4,6 @@ from ex4.TournamentCard import TournamentCard
 
 
 class TournamentPlatform:
-    """Manages card registration, matches, and rankings."""
 
     def __init__(self) -> None:
         self._cards: Dict[str, TournamentCard] = {}
@@ -12,7 +11,6 @@ class TournamentPlatform:
         self._matches_played: int = 0
 
     def register_card(self, card: TournamentCard) -> str:
-        """Register a card and return its unique tournament ID."""
         prefix = card.name.split()[-1].lower()
         self._id_counters[prefix] = (
             self._id_counters.get(prefix, 0) + 1
@@ -22,7 +20,6 @@ class TournamentPlatform:
         return card_id
 
     def create_match(self, card1_id: str, card2_id: str) -> dict:
-        """Simulate a match between two registered cards."""
         c1 = self._cards[card1_id]
         c2 = self._cards[card2_id]
 
@@ -49,7 +46,6 @@ class TournamentPlatform:
         }
 
     def get_leaderboard(self) -> List[dict]:
-        """Return cards sorted by rating, highest first."""
         sorted_cards = sorted(
             self._cards.items(),
             key=lambda item: item[1].calculate_rating(),
@@ -68,7 +64,6 @@ class TournamentPlatform:
         return board
 
     def generate_tournament_report(self) -> dict:
-        """Return a summary report of the tournament platform."""
         total = len(self._cards)
         avg = (
             sum(c.calculate_rating() for c in self._cards.values())

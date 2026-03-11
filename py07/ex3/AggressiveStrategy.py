@@ -5,7 +5,6 @@ from ex3.GameStrategy import GameStrategy
 
 
 class AggressiveStrategy(GameStrategy):
-    """Strategy that prioritizes attacking and board presence."""
 
     AVAILABLE_MANA = 5
 
@@ -13,14 +12,12 @@ class AggressiveStrategy(GameStrategy):
         return "AggressiveStrategy"
 
     def prioritize_targets(self, available_targets: List) -> List:
-        """Return targets sorted by priority (player direct > creatures)."""
         return sorted(
             available_targets,
             key=lambda t: 0 if t == 'Enemy Player' else 1,
         )
 
     def execute_turn(self, hand: List, battlefield: List) -> dict:
-        """Play low-cost cards first, then attack targets."""
         mana = self.AVAILABLE_MANA
         played = []
         damage = 0

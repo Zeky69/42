@@ -24,5 +24,7 @@ def wisdom_potion() -> str:
     water_result = create_water()
     earth_result = create_earth()
     air_result = create_air()
-    all_four_results = f"{fire_result}, {water_result}, {earth_result}, {air_result}"
+    all_four_results = (
+        f"{fire_result}, {water_result}, {earth_result}, {air_result}"
+    )
     return f"Wisdom potion brewed with all elements: {all_four_results}"

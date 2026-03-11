@@ -5,7 +5,6 @@ from ex2.Magical import Magical
 
 
 class EliteCard(Card, Combatable, Magical):
-    """Powerful card combining combat and magical abilities."""
 
     def __init__(
         self,
@@ -22,7 +21,6 @@ class EliteCard(Card, Combatable, Magical):
         self.mana_pool = mana_pool
 
     def play(self, game_state: dict) -> dict:
-        """Deploy the elite card to the battlefield."""
         if 'mana' in game_state:
             game_state['mana'] -= self.cost
         if 'battlefield' in game_state:
@@ -42,7 +40,6 @@ class EliteCard(Card, Combatable, Magical):
         return info
 
     def attack(self, target) -> dict:
-        """Perform a melee attack against a target."""
         target_name = target.name if hasattr(target, 'name') else str(target)
         return {
             'attacker': self.name,
@@ -52,7 +49,6 @@ class EliteCard(Card, Combatable, Magical):
         }
 
     def defend(self, incoming_damage: int) -> dict:
-        """Block incoming damage using the defense value."""
         blocked = min(self.defense, incoming_damage)
         taken = incoming_damage - blocked
         return {
@@ -70,7 +66,6 @@ class EliteCard(Card, Combatable, Magical):
         }
 
     def cast_spell(self, spell_name: str, targets: List) -> dict:
-        """Cast a named spell against a list of targets."""
         mana_cost = len(targets) * 2
         self.mana_pool = max(0, self.mana_pool - mana_cost)
         return {
@@ -82,7 +77,6 @@ class EliteCard(Card, Combatable, Magical):
         }
 
     def channel_mana(self, amount: int) -> dict:
-        """Channel additional mana into the pool."""
         self.mana_pool += amount
         return {
             'channeled': amount,

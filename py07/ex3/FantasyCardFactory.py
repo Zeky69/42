@@ -6,7 +6,6 @@ from ex3.CardFactory import CardFactory
 
 
 class FantasyCardFactory(CardFactory):
-    """Concrete factory that produces fantasy-themed cards."""
 
     _CREATURES: List[Dict] = [
         {'name': 'Fire Dragon', 'cost': 5, 'rarity': 'Legendary',
@@ -33,7 +32,6 @@ class FantasyCardFactory(CardFactory):
     def create_creature(
         self, name_or_power: 'str | int | None' = None
     ) -> CreatureCard:
-        """Create a fantasy creature card."""
         data = self._CREATURES[0]
         if isinstance(name_or_power, str):
             for c in self._CREATURES:
@@ -53,7 +51,6 @@ class FantasyCardFactory(CardFactory):
     def create_spell(
         self, name_or_power: 'str | int | None' = None
     ) -> SpellCard:
-        """Create a fantasy spell card."""
         data = self._SPELLS[0]
         self._created += 1
         return SpellCard(
@@ -64,7 +61,6 @@ class FantasyCardFactory(CardFactory):
     def create_artifact(
         self, name_or_power: 'str | int | None' = None
     ) -> ArtifactCard:
-        """Create a fantasy artifact card."""
         data = self._ARTIFACTS[0]
         self._created += 1
         return ArtifactCard(
@@ -73,7 +69,6 @@ class FantasyCardFactory(CardFactory):
         )
 
     def create_themed_deck(self, size: int) -> dict:
-        """Create a balanced themed deck of the given size."""
         deck: Dict = {'creatures': [], 'spells': [], 'artifacts': []}
         for i in range(size):
             if i % 3 == 0:
@@ -85,7 +80,6 @@ class FantasyCardFactory(CardFactory):
         return deck
 
     def get_supported_types(self) -> dict:
-        """Return the card types and themes supported by this factory."""
         return {
             'creatures': ['dragon', 'goblin'],
             'spells': ['fireball'],

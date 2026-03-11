@@ -16,12 +16,10 @@ class GameEngine:
     def configure_engine(
         self, factory: CardFactory, strategy: GameStrategy
     ) -> None:
-        """Attach a card factory and strategy to the engine."""
         self._factory = factory
         self._strategy = strategy
 
     def _build_hand(self) -> List:
-        """Create a representative hand using the configured factory."""
         dragon = self._factory.create_creature('Fire Dragon')
         goblin = self._factory.create_creature('Goblin Warrior')
         bolt = self._factory.create_spell()
@@ -29,7 +27,6 @@ class GameEngine:
         return [dragon, goblin, bolt]
 
     def simulate_turn(self) -> dict:
-        """Simulate one game turn and return the result."""
         if self._factory is None or self._strategy is None:
             raise RuntimeError("Engine not configured. Call configure_engine.")
 
@@ -49,7 +46,6 @@ class GameEngine:
         }
 
     def get_engine_status(self) -> dict:
-        """Return current engine statistics."""
         strategy_name = (
             self._strategy.get_strategy_name()
             if self._strategy else 'None'

@@ -3,7 +3,6 @@ from ex0.Card import Card
 
 
 class CreatureCard(Card):
-    """Concrete card representing a creature on the battlefield."""
 
     def __init__(
         self,
@@ -22,7 +21,6 @@ class CreatureCard(Card):
         self.health = health
 
     def play(self, game_state: dict) -> dict:
-        """Summon the creature to the battlefield."""
         if 'mana' in game_state:
             game_state['mana'] -= self.cost
         if 'battlefield' in game_state:
@@ -34,7 +32,6 @@ class CreatureCard(Card):
         }
 
     def get_card_info(self) -> Dict:
-        """Return a dictionary with full creature card information."""
         info = super().get_card_info()
         info['type'] = 'Creature'
         info['attack'] = self.attack
@@ -42,7 +39,6 @@ class CreatureCard(Card):
         return info
 
     def attack_target(self, target: 'CreatureCard') -> dict:
-        """Resolve combat between this creature and a target."""
         return {
             'attacker': self.name,
             'target': target.name,

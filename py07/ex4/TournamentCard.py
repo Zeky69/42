@@ -3,8 +3,6 @@ from ex0.Card import Card
 from ex2.Combatable import Combatable
 from ex4.Rankable import Rankable
 
-_RATING_CHANGE = 16
-
 
 class TournamentCard(Card, Combatable, Rankable):
     """Card with full combat and tournament ranking capabilities."""
@@ -25,8 +23,6 @@ class TournamentCard(Card, Combatable, Rankable):
         self._wins = 0
         self._losses = 0
 
-    # --- Card ---
-
     def play(self, game_state: dict) -> dict:
         """Deploy the tournament card to the battlefield."""
         if 'mana' in game_state:
@@ -44,9 +40,6 @@ class TournamentCard(Card, Combatable, Rankable):
         info['type'] = 'Tournament'
         info['attack_power'] = self.attack_power
         info['defense'] = self.defense
-        return info
-
-    # --- Combatable ---
 
     def attack(self, target) -> dict:
         """Attack a target and return the combat result."""
@@ -78,20 +71,18 @@ class TournamentCard(Card, Combatable, Rankable):
             'defense': self.defense,
         }
 
-    # --- Rankable ---
-
     def calculate_rating(self) -> int:
         return self._rating
 
     def update_wins(self, wins: int) -> None:
         """Record wins and increase rating."""
         self._wins += wins
-        self._rating += wins * _RATING_CHANGE
+        self._rating += wins * 16
 
     def update_losses(self, losses: int) -> None:
         """Record losses and decrease rating."""
         self._losses += losses
-        self._rating -= losses * _RATING_CHANGE
+        self._rating -= losses * 16
 
     def get_rank_info(self) -> Dict:
         return {
@@ -100,8 +91,6 @@ class TournamentCard(Card, Combatable, Rankable):
             'wins': self._wins,
             'losses': self._losses,
         }
-
-    # --- Tournament-specific ---
 
     def get_tournament_stats(self) -> Dict:
         """Return full tournament statistics for this card."""
